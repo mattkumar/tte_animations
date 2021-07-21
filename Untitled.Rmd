@@ -1,0 +1,26 @@
+---
+title: "Storytelling with gganimate"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns 
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+### Kaplan Meier Curves
+Zoom with CTRL + Mouse Wheel Up
+```{r pressure, echo=FALSE,  out.width = '100%'}
+knitr::include_graphics("km.gif")
+```
+
+Column {data-width=600}
+-----------------------------------------------------------------------
+### Comparing Simulated vs Theoretical values
+Zoom with CTRL + Mouse Wheel Up
+```{r pressure2, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("curve.gif")
+```

@@ -1,6 +1,9 @@
 library(tidyverse)
 library(gganimate)
 library(ggthemes)
+#library(ggbrace)
+
+set.seed(32411)
 
 # pretty data
 dat <- data.frame(t = rep(seq(-10, 10, 0.1), each = 2),
@@ -34,14 +37,15 @@ gg <- ggplot(data = dat, aes(x = t, y = fn, color = id, group = id)) +
   theme_fivethirtyeight() +
   theme(legend.position = "top") +
   labs(title = "Theoretical vs Simulation-based Estimates",
-       subtitle = "Over a pre-defined domain and range",
+       subtitle = "Over a pre-defined range of values",
        color = "")
+  #geom_brace(aes(c(-2, -0.8), c(0.319909, 0.5719746)), color = "green" , rotate = 270, inherit.data=F)
 
 gg
 
 anim <- gg + 
   transition_reveal(t) 
 
+animate(anim, renderer = gifski_renderer(), nframes = 200, height = 900, width = 1250, res = 120, end_pause = 20)
 
-animate(anim, renderer = gifski_renderer(), nframes = 185, height = 900, width = 1250, res = 120, end_pause = 20)
-
+anim_save("curve.gif", animation = last_animation())
